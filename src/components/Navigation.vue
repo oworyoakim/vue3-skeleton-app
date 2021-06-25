@@ -110,6 +110,7 @@ export default defineComponent({
     height: 100vh;
     position: fixed;
     transition: 850ms;
+    overflow-y: scroll;
   }
 
   .menu-close-btn {
