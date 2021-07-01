@@ -1,31 +1,34 @@
 <template>
-<div class="navigation">
-  <nav class="navbar navbar-light navbar-container">
-    <div class="container-fluid">
-      <div class="navbar-brand-content">
-        <a class="navbar-brand" href="/">
-          <img class="brand-logo" src="/logo.png" alt="VueApp">
-        </a>
-        <a href="javascript:void(0);" @click="toggleSidebar()" class="sidebar-toggle-btn">
-          <span class="fas fa-bars"></span>
-        </a>
+  <div class="navigation">
+    <nav class="navbar navbar-light navbar-container">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="navbar-brand-content">
+          <a class="navbar-brand flex-sm-grow-1" href="/">
+            <img class="brand-logo" src="/logo.png" alt="VueApp">
+          </a>
+          <a class="sidebar-toggle-btn" href="javascript:void(0);" @click="toggleSidebar()">
+            <span class="fas fa-bars"></span>
+          </a>
+        </div>
+        <div class="d-flex">
+          <a class="text-decoration-none text-white" href="#"><i class="fa fa-power-off"></i> Logout</a>
+        </div>
       </div>
-    </div>
-  </nav>
-  <nav class="sidebar" v-if="sidebar">
-    <div class="menu-close-btn" @click="toggleSidebar()">
-      <span class="fas fa-times"></span>
-    </div>
-    <ul class="menu-items" @click="toggleSidebar()">
-      <li v-for="route in routes" class="menu-item">
-        <router-link :to="route.path" tag="a" class="menu-item" active-class="active">
-          <span :class="`${route.icon} menu-item-icon`"></span>
-          <span class="menu-item-text">{{route.text}}</span>
-        </router-link>
-      </li>
-    </ul>
-  </nav>
-</div>
+    </nav>
+    <nav class="sidebar" v-if="sidebar">
+      <div class="menu-close-btn" @click="toggleSidebar()">
+        <span class="fas fa-times"></span>
+      </div>
+      <ul class="menu-items" @click="toggleSidebar()">
+        <li v-for="route in routes" class="menu-item">
+          <router-link :to="route.path" tag="a" class="menu-item" active-class="active">
+            <span :class="`${route.icon} menu-item-icon`"></span>
+            <span class="menu-item-text">{{ route.text }}</span>
+          </router-link>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <script lang="ts">
@@ -33,7 +36,7 @@ import {defineComponent, ref} from "vue";
 
 export default defineComponent({
   name: "Navigation",
-  setup(){
+  setup() {
     const sidebar = ref(false);
     const routes = [
       {
@@ -67,100 +70,113 @@ export default defineComponent({
 </script>
 
 <style scoped>
-  .navbar-container {
-    width: 100%;
-    background-color: #6c757d;
-    color: #f5f5f5;
-  }
+.navbar-container {
+  width: 100%;
+  background-color: #6c757d;
+  color: #f5f5f5;
+}
+
+.navbar-brand-content {
+  display: flex;
+  align-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-section {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 599px) {
   .navbar-brand-content {
     display: flex;
-    align-content: flex-start;
+    align-content: space-between;
+    width: 68%;
   }
-  @media screen and (max-width: 599px) {
-    .navbar-brand-content {
-      display: flex;
-      align-content: space-between;
-      width: 100%;
-    }
-  }
-  .navbar-brand-content a {
-    text-decoration: none;
-    color: #f5f5f5;
-  }
+}
+
+.navbar-brand-content a {
+  text-decoration: none;
+  color: #f5f5f5;
+}
+
 .brand-logo {
   width: auto;
   height: 32px;
 }
-  .sidebar-toggle-btn {
-    margin-left: 2rem;
-    font-size: 2rem;
-    background: none;
-  }
 
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: #6c757d;
-    color: #f5f5f5;
-    top: 0;
-    bottom: 0;
-    width: 250px;
-    height: 100vh;
-    position: fixed;
-    transition: 850ms;
-    overflow-y: scroll;
-  }
+.sidebar-toggle-btn {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
 
-  .menu-close-btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 80px;
-    font-size: 2rem;
-    color: #f5f5f5;
-    cursor: pointer;
-  }
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #6c757d;
+  color: #f5f5f5;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  transition: 850ms;
+  overflow-y: scroll;
+}
 
-  .menu-items {
-    list-style: none;
-    width: 100%;
-  }
+.menu-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80px;
+  font-size: 2rem;
+  color: #f5f5f5;
+  cursor: pointer;
+}
 
-  .menu-item {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 8px 0 8px 8px;
-  }
+.menu-items {
+  list-style: none;
+  width: 100%;
+}
 
-  .menu-item a {
-    text-decoration: none;
-    color: #f5f5f5;
-    font-size: 18px;
-    width: 95%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 16px;
-    border-radius: 4px;
-  }
-  .menu-item a:hover {
-    background-color: #0dcaf0;
-  }
+.menu-item {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 0 8px 8px;
+}
 
-  .menu-item .active {
-    background-color: #0dcaf0;
-  }
+.menu-item a {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
 
-  .menu-item-icon {
-    background: none;
-    color: #f5f5f5;
-  }
-  .menu-item-text {
-    margin-left: 16px;
-  }
+.menu-item a:hover {
+  background-color: #0dcaf0;
+}
+
+.menu-item .active {
+  background-color: #0dcaf0;
+}
+
+.menu-item-icon {
+  background: none;
+  color: #f5f5f5;
+}
+
+.menu-item-text {
+  margin-left: 16px;
+}
 </style>

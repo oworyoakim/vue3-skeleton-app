@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~@fortawesome/fontawesome-free/css/all.css";
 
@@ -6,5 +6,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Poppins, sans-serif;
+    font-family: Nunito, sans-serif;
+}
+
+.wrapper {
+    background-color: #D9E3F1;
+    bottom: 0;
+    top: 0;
+    height: 100vh;
 }
